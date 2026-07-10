@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>どんどん祭り 2026 | 小松駅周辺で開催！</title>
+    <style>
+        /* --- Base & Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: #0d0d0d;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        /* --- Header / Hero Section --- */
+        header {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(13, 13, 13, 1)), 
+                        url('https://images.unsplash.com/photo-1542640244-7e672d6cef21?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            padding: 20px;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .catchphrase {
+            font-size: 1.5rem;
+            color: #ffd700;
+            font-weight: bold;
+            letter-spacing: 0.5em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .main-title {
+            font-size: 5rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 4px 10px rgba(0,0,0,0.9);
+            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-date {
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #ffd700, #ffa500);
+            color: #000;
+            padding: 10px 25px;
+            display: inline-block;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            margin-bottom: 30px;
+        }
+
+        /* --- Shared Layout Elements --- */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            color: #ffd700;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, #ffa500);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- Features Section --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .features-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15);
+            border: 2px solid #ffd700;
+        }
+
+        .features-text h3 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-text h3::before {
+            content: '■';
+            color: #ffd700;
+        }
+
+        .features-text p {
+            font-size: 1.1rem;
+            color: #cccccc;
+            line-height: 1.8;
+        }
+
+        /* --- Events Section --- */
+        #events {
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0d0d0d 100%);
+            max-width: 100%;
+        }
+        .events-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .event-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #222;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .card-desc {
+            color: #dddddd;
+            font-size: 0.95rem;
+        }
+
+        /* --- Access Info Section --- */
+        .access-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .access-box {
+            background: linear-gradient(135deg, #1f1f1f 0%, #141414 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #ffd700;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .access-box h3 {
+            font-size: 1.3rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .access-box p {
+            color: #eeeeee;
+        }
+
+        .cta-button {
+            display: block;
+            width: fit-content;
+            margin: 50px auto 0;
+            background: linear-gradient(45deg, #ffd700, #ffa500);
+            color: #000000;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            text-align: center;
+            animation: pulse 2s infinite;
+            transition: transform 0.2s;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #050505;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .footer-info {
+            color: #888888;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .copyright {
+            color: #555555;
+            font-size: 0.8rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3.2rem;
+            }
+            .catchphrase {
+                font-size: 1.2rem;
+                letter-spacing: 0.3em;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-image {
+                height: 280px;
+            }
+            section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="hero-content fade-in">
+            <p class="catchphrase">どんどん</p>
+            <h1 class="main-title">どんどん祭り</h1>
+            <div class="hero-date">2026.10.10(土) ～ 11(日)</div>
+            <p style="font-size: 1.2rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">会場：小松駅周辺 | 参加費：無料</p>
+        </div>
+    </header>
+
+    <section id="features">
+        <h2 class="section-title">祭りの特徴</h2>
+        <div class="features-grid">
+            <img class="features-image" src="https://images.unsplash.com/photo-1509114397022-ed747cca3f65?auto=format&fit=crop&w=800&q=80" alt="行燈のイメージ（夜祭）">
+            <div class="features-text">
+                <h3>幻想的な「行燈（あんどん）行列」</h3>
+                <p>
+                    どんどん祭りの象徴とも言える「行燈行列」。夜の小松駅周辺が、柔らかな光を放つ無数の行燈によって美しく彩られます。若者たちの熱気と、伝統的な光の芸術が融合する、圧倒的でエモーショナルな光景をぜひ肌で体感してください。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="events">
+        <div class="events-container">
+            <h2 class="section-title">イベントスケジュール</h2>
+            <div class="event-cards">
+                <div class="card">
+                    <img class="card-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80" alt="ダンスコンテストイメージ">
+                    <div class="card-content">
+                        <div class="card-title">ダンスコンテスト</div>
+                        <div class="card-desc">地元の若きダンサーたちが集結！圧倒的な熱量とキレのあるパフォーマンスで、ステージを最高潮に盛り上げます。</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=600&q=80" alt="ステージパフォーマンスイメージ">
+                    <div class="card-content">
+                        <div class="card-title">ステージパフォーマンス</div>
+                        <div class="card-desc">音楽ライブから伝統芸能まで、多彩なジャンルのアーティストが登場。片時も目が離せないにぎやかな特設ステージ。</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="https://images.unsplash.com/photo-1516280440614-37939bbacd6a?auto=format&fit=crop&w=600&q=80" alt="のど自慢イメージ">
+                    <div class="card-content">
+                        <div class="card-title">のど自慢</div>
+                        <div class="card-desc">我こそはという歌自慢たちが自慢の美声を披露！会場全体が一体となって盛り上がる、興奮度マックスのカラオケバトル。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="access">
+        <h2 class="section-title">アクセス情報</h2>
+        <div class="access-info">
+            <div class="access-box">
+                <h3>開催場所</h3>
+                <p>小松駅周辺（石川県小松市）</p>
+                <p style="font-size: 0.9rem; color: #aaa; margin-top: 5px;">※祭り開催中は混雑が予想されます。</p>
+            </div>
+            <div class="access-box">
+                <h3>電車でお越しの方</h3>
+                <p>JR小松駅 下車すぐ</p>
+                <p style="font-size: 0.9rem; color: #aaa; margin-top: 5px;">スムーズに移動できる公共交通機関の利用がおすすめです。</p>
+            </div>
+            <div class="access-box">
+                <h3>お車でお越しの方</h3>
+                <p>小松駅周辺の有料駐車場をご利用ください。</p>
+                <p style="font-size: 0.9rem; color: #aaa; margin-top: 5px;">※交通規制が敷かれるエリアがございますのでご注意ください。</p>
+            </div>
+        </div>
+        <a href="#" class="cta-button">公式情報をSNSでチェック！</a>
+    </section>
+
+    <footer>
+        <div class="footer-logo">どんどん祭り 2026</div>
+        <div class="footer-info">
+            <p>主催・お問い合わせ：小松商工会議所</p>
+            <p>参加条件：入場無料・どなたでも大歓迎！</p>
+        </div>
+        <div class="copyright">&copy; 2026 どんどん祭り実行委員会 / 小松商工会議所. All Rights Reserved.</div>
+    </footer>
+
+</body>
+</html>
